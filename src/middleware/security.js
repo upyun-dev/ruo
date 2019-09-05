@@ -1,6 +1,6 @@
 const _ = require('lodash')
 
-const {forEachOperation} = require('../utility')
+const { forEachOperation } = require('../utility')
 
 const BINDING_KEY = '__security_middleware__'
 const HANDLER_NAME = '__name__'
@@ -42,7 +42,7 @@ module.exports = (api, middlewares) => {
         return done(err)
       }
       // TODO: support additional arguments for security middleware
-      let securityHandler = securityHandlers[index]()
+      const securityHandler = securityHandlers[index]()
       index = index + 1
       securityHandler(req, res, next)
     }

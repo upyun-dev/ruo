@@ -1,4 +1,4 @@
-const {HttpError} = require('../../../src')
+const { HttpError } = require('../../../src')
 
 module.exports = {
   async get (req, res) {
@@ -10,7 +10,7 @@ module.exports = {
       throw new HttpError('UnknownException')
     }
 
-    res.send({message: 'ok'})
+    res.send({ message: 'ok' })
   },
   async delete () {
     throw new HttpError('BadRequest')

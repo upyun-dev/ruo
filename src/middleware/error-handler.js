@@ -2,7 +2,7 @@ const rc = require('../rc')
 
 const _ = require('lodash')
 const debug = require('debug')(rc.name)
-const {names, messages, table} = require('../error')
+const { names, messages, table } = require('../error')
 
 /**
  * NOTE: `next` parameter can't be removed because expressjs identify error handler by arguments.length.
@@ -20,7 +20,7 @@ module.exports = (api, customErrorHandler = defaultErrorHandler) => {
     }
 
     if (typeof err === 'string') {
-      err = {message: err}
+      err = { message: err }
     }
 
     if (!err.name) {
@@ -30,7 +30,7 @@ module.exports = (api, customErrorHandler = defaultErrorHandler) => {
     let data = getErrorData(err, req, globalErrorCodeTable)
     if (!data) {
       err.name = names[500]
-      data = {name: names[500]}
+      data = { name: names[500] }
     }
 
     if (err.name === names[500]) {
@@ -69,7 +69,7 @@ function getErrorData (err, req, globalErrorCodeTable) {
     return null
   }
 
-  return _.assign({name}, data)
+  return _.assign({ name }, data)
 }
 
 function reportError (err, req) {

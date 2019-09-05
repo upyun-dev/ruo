@@ -8,13 +8,13 @@ const utility = require('./utility')
 const Pipeline = require('./pipeline')
 const mws = require('./middleware')
 const load = require('./load')
-const {HttpError, ParameterError} = require('./error')
+const { HttpError, ParameterError } = require('./error')
 const createWebSocketApplication = require('./ws')
 const createSession = require('./session')
 const createTestApplicationAsync = require('./supertest')
 
 exports.createApplicationAsync = createApplicationAsync
-// backward compability
+// backward compatibility
 exports.ResponseError = exports.HttpError = HttpError
 exports.ParameterError = ParameterError
 exports.translate = exports.utility = utility
@@ -33,11 +33,11 @@ async function createApplicationAsync (app, config = {}) {
     exports.app = app
 
     const server = http.createServer(app)
-    const {api, middlewares} = await load(config.swagger, exports)
+    const { api, middlewares } = await load(config.swagger, exports)
     exports.api = api
 
     exports.createTestApplicationAsync = () => createTestApplicationAsync(app, api, config)
-    exports.getRestMiddleware = exports.restMiddleware = () => getRestMiddleware({api, middlewares, errorHandler: config.errorHandler})
+    exports.getRestMiddleware = exports.restMiddleware = () => getRestMiddleware({ api, middlewares, errorHandler: config.errorHandler })
 
     if (config.session) {
       app.use(createSession(config.session))
@@ -65,13 +65,13 @@ async function createApplicationAsync (app, config = {}) {
   }
 }
 
-function getRestMiddleware ({api, middlewares, swagger, errorHandler} = {}) {
+function getRestMiddleware ({ api, middlewares, swagger, errorHandler } = {}) {
   const router = Router()
 
   if (!api || !middlewares) {
     load(swagger)
-      .then(({api, middlewares}) => {
-        router.use(getRestMiddleware({api, middlewares, errorHandler}))
+      .then(({ api, middlewares }) => {
+        router.use(getRestMiddleware({ api, middlewares, errorHandler }))
       }).catch((err) => {
         console.log(err.stack) // eslint-disable-line
         process.exit(1)

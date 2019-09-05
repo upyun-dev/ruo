@@ -1,4 +1,4 @@
-const {expect} = require('chai')
+const { expect } = require('chai')
 
 const Path = require('./path')
 const sampleDef = require('./sample-definition.json')
@@ -6,7 +6,7 @@ const sampleDef = require('./sample-definition.json')
 describe('swagger/path', () => {
   const path = '/pet/{petId}'
   const pathDef = sampleDef.paths[path]
-  const pathObject = new Path(path, pathDef, {basePathPrefix: ''}, ['paths', path])
+  const pathObject = new Path(path, pathDef, { basePathPrefix: '' }, ['paths', path])
 
   it('should create express regular express to match path', () => {
     expect(pathObject.regexp.test('/pet/1')).to.eql(true)

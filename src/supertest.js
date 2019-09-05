@@ -5,7 +5,7 @@ const defaults = require('superagent-defaults')
 const supertest = require('supertest')
 const client = require('socket.io-client')
 
-const {initializeClientSocket} = require('./utility')
+const { initializeClientSocket } = require('./utility')
 
 // https://github.com/visionmedia/supertest/issues/307
 events.EventEmitter.defaultMaxListeners = Infinity
@@ -15,8 +15,8 @@ const port = 10000 + parseInt(Math.random() * 10000, 10)
 function createSocket (api, config) {
   return new Promise((resolve) => {
     if (config.ws) {
-      const socket = client(`http://localhost:${port}`, {path: config.ws.path})
-      initializeClientSocket(socket, {basePathPrefix: api.basePathPrefix})
+      const socket = client(`http://localhost:${port}`, { path: config.ws.path })
+      initializeClientSocket(socket, { basePathPrefix: api.basePathPrefix })
       socket.on('connect', () => {
         resolve(socket)
       })

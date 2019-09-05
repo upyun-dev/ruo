@@ -1,4 +1,4 @@
-const {expect} = require('chai')
+const { expect } = require('chai')
 const Switch = require('./switch')()
 
 describe('switch', () => {
@@ -28,4 +28,3 @@ describe('switch', () => {
     })
   })
 })
-

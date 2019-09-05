@@ -1,6 +1,6 @@
 const crypto = require('crypto')
 
-const {HttpError} = require('../../../src')
+const { HttpError } = require('../../../src')
 
 function md5 (str) {
   return crypto.createHash('md5').update(str, 'utf8').digest('hex')
@@ -14,7 +14,7 @@ const TOKEN_STORAGE = {
 }
 
 module.exports = () => async (req) => {
-  let token = req.header('token')
+  const token = req.header('token')
 
   if (TOKEN_STORAGE[token] === undefined) {
     throw new HttpError('Forbidden', 'Invalid Access Token')

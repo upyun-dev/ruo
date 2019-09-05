@@ -2,7 +2,7 @@ const rc = require('../rc')
 
 const debug = require('debug')(rc.name)
 
-const {names, HttpError} = require('../error')
+const { names, HttpError } = require('../error')
 
 module.exports = {
   response () {

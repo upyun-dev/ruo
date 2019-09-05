@@ -1,13 +1,13 @@
 const debug = require('debug')('ruo')
 const Router = require('router')
 
-const {wrapRoute, wrapMiddleware} = require('../utility')
+const { wrapRoute, wrapMiddleware } = require('../utility')
 
 module.exports = (api) => {
   const router = Router()
 
-  for (let path in api.paths) {
-    for (let method in api.paths[path]) {
+  for (const path in api.paths) {
+    for (const method in api.paths[path]) {
       const endpoint = path.replace(/\{/g, ':').replace(/\}/g, '')
       debug('mount handler', method, endpoint)
 

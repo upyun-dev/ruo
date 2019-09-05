@@ -5,7 +5,7 @@ const Parameter = require('./parameter')
 const helpers = require('./helpers')
 
 // addtional __data__ field can used with isSwitchOn to return addtional data in unit test
-const validator = new ZSchema({assumeAdditional: ['__data__']})
+const validator = new ZSchema({ assumeAdditional: ['__data__'] })
 
 class Operation {
   constructor (method, definition, parent, pathToDefinition) {
@@ -75,7 +75,7 @@ class Operation {
           in: paramValue.parameterObject.in,
           // Report the actual error if there is only one error.  Otherwise, report a JSON Schema validation error.
           message: 'Invalid parameter (' + param.name + '): ' + ((paramValue.errors || []).length > 1
-          ? 'Value failed JSON Schema validation' : paramValue.error.message),
+            ? 'Value failed JSON Schema validation' : paramValue.error.message),
           name: paramValue.parameterObject.name,
           path: paramValue.error.path
         }

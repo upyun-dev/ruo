@@ -1,6 +1,6 @@
-const {expect} = require('chai')
+const { expect } = require('chai')
 
-const {Swagger} = require('.')
+const { Swagger } = require('.')
 const sampleDef = require('./sample-definition.json')
 
 describe('validator', () => {

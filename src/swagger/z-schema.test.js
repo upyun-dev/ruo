@@ -1,4 +1,4 @@
-const {expect} = require('chai')
+const { expect } = require('chai')
 
 const ZSchema = require('./z-schema')
 
@@ -7,15 +7,15 @@ const validator = new ZSchema()
 describe('swagger/z-schema', () => {
   it('should validate full-date format', () => {
     const schema = {
-      'type': 'object',
-      'properties': {
-        'startedAt': {
-          'type': 'integer',
-          'format': 'int32'
+      type: 'object',
+      properties: {
+        startedAt: {
+          type: 'integer',
+          format: 'int32'
         },
-        'endedAt': {
-          'type': 'string',
-          'format': 'date'
+        endedAt: {
+          type: 'string',
+          format: 'date'
         }
       }
     }

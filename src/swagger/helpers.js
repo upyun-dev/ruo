@@ -74,8 +74,8 @@ exports.getHeaderValue = (headers, headerName) => {
   // Default to an empty object
   headers = headers || {}
 
-  let lcHeaderName = headerName.toLowerCase()
-  let realHeaderName = _.find(Object.keys(headers), (header) => {
+  const lcHeaderName = headerName.toLowerCase()
+  const realHeaderName = _.find(Object.keys(headers), (header) => {
     return header.toLowerCase() === lcHeaderName
   })
 
@@ -92,7 +92,7 @@ exports.getContentType = (headers) => {
 exports.validateAgainstSchema = (validator, schema, value) => {
   schema = _.cloneDeep(schema) // Clone the schema as z-schema alters the provided document
 
-  let response = {
+  const response = {
     errors: [],
     warnings: []
   }
@@ -134,8 +134,8 @@ exports.validateDateTime = (str) => {
 }
 
 exports.convertValue = (schema, options, value) => {
-  let originalValue = value // Used in error reporting for invalid values
-  let type = _.isPlainObject(schema) ? schema.type : undefined
+  const originalValue = value // Used in error reporting for invalid values
+  const type = _.isPlainObject(schema) ? schema.type : undefined
   let pValue = value
   let pType = typeof pValue
   let err

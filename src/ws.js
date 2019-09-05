@@ -14,7 +14,7 @@ function createWebSocketApplication (server, api, options) {
     return
   }
 
-  const io = require('socket.io')(server, {path: options.path})
+  const io = require('socket.io')(server, { path: options.path })
   const wsapp = express()
   wsapp.io = io
   wsapp.extendMiddleware = extendMiddleware
@@ -43,8 +43,8 @@ function createWebSocketApplication (server, api, options) {
     socket.join(`user ${session.userId}`)
 
     socket.on('req', (message) => {
-      let [envelope, {method = 'GET', url, headers = {}, query, body}] = message
-      headers = _.assign({'content-type': 'application/json'}, socket.handshake.headers, headers)
+      let [envelope, { method = 'GET', url, headers = {}, query, body }] = message
+      headers = _.assign({ 'content-type': 'application/json' }, socket.handshake.headers, headers)
       const req = new MockReq({
         method,
         url,

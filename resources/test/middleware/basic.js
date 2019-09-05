@@ -1,7 +1,7 @@
 const auth = require('basic-auth')
 const crypto = require('crypto')
 
-const {HttpError} = require('../../../src')
+const { HttpError } = require('../../../src')
 
 function md5 (str) {
   return crypto.createHash('md5').update(str, 'utf8').digest('hex')

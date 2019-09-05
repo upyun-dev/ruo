@@ -10,8 +10,8 @@ const _ = require('lodash')
 const glob = require('glob')
 
 const rc = require('./rc')
-const {fromCode, isTest, wrapMiddleware} = require('./utility')
-const {Swagger} = require('./swagger')
+const { fromCode, isTest, wrapMiddleware } = require('./utility')
+const { Swagger } = require('./swagger')
 
 async function load (dynamicDefinition = {}, globals = {}) {
   globals.raw = {};
@@ -54,7 +54,7 @@ async function load (dynamicDefinition = {}, globals = {}) {
 
   // read api implementation and bind them into definition
   const pathDefs = globals.api.definition.paths
-  glob.sync(`**/*${rc.suffix.code}`, {cwd: rc.target}).sort().forEach((file) => {
+  glob.sync(`**/*${rc.suffix.code}`, { cwd: rc.target }).sort().forEach((file) => {
     const codePath = joinPath(rc.target, file)
     debug('require', codePath)
     const mod = require(codePath)

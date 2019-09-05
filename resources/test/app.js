@@ -19,7 +19,7 @@ async function createServer () {
   try {
     const app = await ruo.createApplicationAsync()
 
-    app.use(bodyParser.urlencoded({extended: true}))
+    app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
     app.use(ruo.restMiddleware())
 

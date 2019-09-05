@@ -13,9 +13,9 @@ const validator = new ZSchema({
 
 class ParameterValue {
   constructor (parameterObject, raw) {
-    let pPath = JsonRefs.pathFromPtr(parameterObject.ptr)
+    const pPath = JsonRefs.pathFromPtr(parameterObject.ptr)
     let processed = false
-    let schema = parameterObject.schema
+    const schema = parameterObject.schema
     let error
     let isValid
     let processedValue

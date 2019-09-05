@@ -1,11 +1,11 @@
-const {expect} = require('chai')
+const { expect } = require('chai')
 
 const ENDPOINT = '/convert'
 
 describe(ENDPOINT, () => {
   describe('get', () => {
     it('should convert querystring and form data type', async () => {
-      const {body} = await api.post(ENDPOINT)
+      const { body } = await api.post(ENDPOINT)
         .query({
           string: 'string value',
           number: '123'

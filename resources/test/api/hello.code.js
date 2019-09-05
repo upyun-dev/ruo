@@ -1,7 +1,7 @@
 module.exports = {
   async get (req, res) {
     // delayed response
-    res.send({message: await delay()})
+    res.send({ message: await delay() })
   }
 }
 

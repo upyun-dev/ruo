@@ -4,7 +4,7 @@ const debug = require('debug')(rc.name)
 module.exports = {
   request () {
     return (req, res, next) => {
-      let payload = req.method === 'GET' || req.method === 'DELETE' ? req.query : req.body
+      const payload = req.method === 'GET' || req.method === 'DELETE' ? req.query : req.body
       debug('request', req.method, req.path, payload)
 
       res.setHeader('x-api-version', req.state.version)

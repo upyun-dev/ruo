@@ -1,4 +1,4 @@
-const {expect} = require('chai')
+const { expect } = require('chai')
 
 const Operation = require('./operation')
 const sampleDef = require('./sample-definition.json')
@@ -7,7 +7,7 @@ describe('swagger/operation', () => {
   const path = '/pet/findByStatus'
   const method = 'get'
   const operationDef = sampleDef.paths[path][method]
-  const operationObject = new Operation(method, operationDef, {parent: {}}, ['paths', path, method])
+  const operationObject = new Operation(method, operationDef, { parent: {} }, ['paths', path, method])
 
   it('should create parameter object', () => {
     expect(operationObject.parameterObjects.length).to.eql(operationDef.parameters.length)
@@ -29,12 +29,12 @@ describe('swagger/operation', () => {
     let error
 
     results = operationObject.validateRequest({
-      query: {status: ['available']}
+      query: { status: ['available'] }
     })
     expect(results.errors.length).to.eql(0)
 
     results = operationObject.validateRequest({
-      query: {status: ['invalid type']}
+      query: { status: ['invalid type'] }
     })
     expect(results.errors.length).to.eql(1)
     error = results.errors[0]
@@ -47,7 +47,7 @@ describe('swagger/operation', () => {
   it('should validate response by response object and response data', () => {
     let errors
 
-    errors = operationObject.validateResponse({method: 'get'}, {
+    errors = operationObject.validateResponse({ method: 'get' }, {
       statusCode: 200
     }, [{
       name: 'someName',
@@ -55,7 +55,7 @@ describe('swagger/operation', () => {
     }])
     expect(errors).to.eql(undefined)
 
-    errors = operationObject.validateResponse({method: 'get'}, {
+    errors = operationObject.validateResponse({ method: 'get' }, {
       statusCode: 200
     }, [{
       photoUrls: ['http://examples.com/abc.png']
@@ -89,11 +89,11 @@ describe('swagger/operation', () => {
           type: 'integer'
         }
       ]
-    }, {parent: {}}, [])
+    }, { parent: {} }, [])
     const req = {
-      query: {integer: '123'},
-      body: {number: '1.23', boolean: 'true'},
-      headers: {'header-integer': '123', 'content-type': 'application/x-www-form-urlencoded'}
+      query: { integer: '123' },
+      body: { number: '1.23', boolean: 'true' },
+      headers: { 'header-integer': '123', 'content-type': 'application/x-www-form-urlencoded' }
     }
     operationObject.validateRequest(req)
     expect(req.query.integer).to.eql(123)
@@ -105,11 +105,11 @@ describe('swagger/operation', () => {
   it('should only validate content type if req.body not empty', () => {
     let req
     let result
-    const operationObject = new Operation('put', {}, {parent: {consumes: ['application/octet-stream']}}, [])
+    const operationObject = new Operation('put', {}, { parent: { consumes: ['application/octet-stream'] } }, [])
 
     req = {
-      body: {number: '1.23', boolean: 'true'},
-      headers: {'content-type': 'application/x-www-form-urlencoded'}
+      body: { number: '1.23', boolean: 'true' },
+      headers: { 'content-type': 'application/x-www-form-urlencoded' }
     }
     result = operationObject.validateRequest(req)
     expect(result.errors.length).to.eql(1)
@@ -117,7 +117,7 @@ describe('swagger/operation', () => {
 
     req = {
       body: {},
-      headers: {'content-type': 'application/x-www-form-urlencoded'}
+      headers: { 'content-type': 'application/x-www-form-urlencoded' }
     }
     result = operationObject.validateRequest(req)
     expect(result.errors.length).to.eql(0)

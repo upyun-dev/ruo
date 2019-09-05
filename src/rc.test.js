@@ -3,7 +3,7 @@ const path = require('path')
 const mock = require('mock-fs')
 const expect = require('chai').expect
 
-const {loadStaticConfig} = require('./rc')
+const { loadStaticConfig } = require('./rc')
 
 const location = path.join(process.cwd(), '.ruorc')
 

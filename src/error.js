@@ -50,7 +50,7 @@ class HttpError extends Error {
 
 class ParameterError extends HttpError {
   constructor (field, expected, actual) {
-    let message = `${field} should be ${expected}, got ${actual}`
+    const message = `${field} should be ${expected}, got ${actual}`
     super('BadRequest', message)
 
     this.field = field

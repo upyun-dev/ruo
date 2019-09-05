@@ -107,7 +107,7 @@ function createRouter (onReply) {
 
   function route (body, callback) {
     seq++
-    const envelope = {seq}
+    const envelope = { seq }
     const message = [envelope, body]
     map[seq] = callback
     return message
@@ -118,7 +118,7 @@ function createRouter (onReply) {
   return route
 }
 
-exports.initializeClientSocket = (socket, {basePathPrefix = ''} = {}) => {
+exports.initializeClientSocket = (socket, { basePathPrefix = '' } = {}) => {
   const route = createRouter((reply) => {
     socket.on('rep', reply)
   })
