@@ -35,6 +35,10 @@ function createWebSocketApplication (server, api, options) {
     io.use(ioSession(createSession(options.session)))
   }
 
+  io.on('error', function (err) {
+    console.error(err);
+  });
+
   io.on('connection', (socket) => {
     const session = socket.handshake.session
     // join sid and userId to allow send message to particular socket
