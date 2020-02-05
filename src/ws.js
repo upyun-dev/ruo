@@ -46,6 +46,10 @@ function createWebSocketApplication (server, api, options) {
       console.error(err);
     });
 
+    socket.on('disconnect', function (reason) {
+      console.log('disconnect reason', reason);
+    })
+
     socket.on('req', (message) => {
       let [envelope, {method = 'GET', url, headers = {}, query, body}] = message
       headers = _.assign({'content-type': 'application/json'}, socket.handshake.headers, headers)
