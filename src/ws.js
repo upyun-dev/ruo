@@ -35,16 +35,16 @@ function createWebSocketApplication (server, api, options) {
     io.use(ioSession(createSession(options.session)))
   }
 
-  io.on('error', function (err) {
-    console.error(err);
-  });
-
   io.on('connection', (socket) => {
     const session = socket.handshake.session
     // join sid and userId to allow send message to particular socket
     socket.join(`session ${session.id}`)
     // TODO: custom userId field?
     socket.join(`user ${session.userId}`)
+
+    socket.on('error', function (err) {
+      console.error(err);
+    });
 
     socket.on('req', (message) => {
       let [envelope, {method = 'GET', url, headers = {}, query, body}] = message
