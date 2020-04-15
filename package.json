@@ -48,25 +48,10 @@
     "z-schema": "^3.17.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^6.1.0",
-    "@commitlint/config-conventional": "^6.1.0",
-    "babel-cli": "^6.10.1",
-    "babel-eslint": "^6.0.4",
-    "babel-plugin-istanbul": "^1.0.3",
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-plugin-transform-es2015-classes": "^6.9.0",
-    "babel-plugin-transform-es2015-destructuring": "^6.8.0",
-    "babel-plugin-transform-es2015-parameters": "^6.9.0",
-    "babel-plugin-transform-es2015-spread": "^6.8.0",
-    "babel-plugin-transform-strict-mode": "^6.8.0",
-    "babel-register": "^6.9.0",
     "basic-auth": "^2.0.1",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "cz-conventional-changelog": "^2.1.0",
-    "eslint-plugin-babel": "^3.2.0",
-    "husky": "^0.14.3",
     "mocha": "^7.1.1",
     "mock-fs": "^4.11.0",
     "nyc": "^15.0.1",
@@ -75,14 +60,9 @@
     "standard": "^8.4.0"
   },
   "scripts": {
-    "prebuild": "rm -rf dist",
-    "build": "babel src -d dist --copy-files",
-    "prewatch": "rm -rf dist",
-    "watch": "babel src -d dist --copy-files -w",
     "lint": "standard",
-    "test": "NODE_ENV=test babel-node ./node_modules/.bin/_mocha --reporter spec $npm_package_options_mocha 'src/**/*.test.js' 'resources/test/**/*.test.js' --exit",
-    "cover": "NODE_ENV=test nyc --reporter html --reporter text ./node_modules/.bin/mocha $npm_package_options_mocha 'src/**/*.test.js' 'resources/test/**/*.test.js' --exit",
-    "prepublish": "npm run build"
+    "test": "NODE_ENV=test ./node_modules/.bin/_mocha --reporter spec $npm_package_options_mocha 'src/**/*.test.js' 'resources/test/**/*.test.js' --exit",
+    "cover": "NODE_ENV=test nyc --reporter html --reporter text ./node_modules/.bin/mocha $npm_package_options_mocha 'src/**/*.test.js' 'resources/test/**/*.test.js' --exit"
   },
   "options": {
     "mocha": "resources/mocha-bootload --colors --full-trace --timeout 10000"
@@ -94,14 +74,10 @@
     "exclude": [
       "src/**/*.test.js"
     ],
-    "require": [
-      "babel-register"
-    ],
     "sourceMap": false,
     "instrument": false
   },
   "standard": {
-    "parser": "babel-eslint",
     "ignore": [
       "dist",
       "coverage"
