@@ -73,6 +73,10 @@ function createWebSocketApplication (server, api, options) {
       })
     })
 
+    socket.on('error', (err) => {
+      console.error('socket error: %j', err)
+    })
+
     // NOTE: we cant listen to `join` event because normally sensitive message will broadcasted and `join` action
     // should have some sort of authentications.
   })
