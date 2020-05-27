@@ -1,5 +1,4 @@
 const rc = require('../rc')
-const _ = require('lodash')
 
 const debug = require('debug')(rc.name)
 
@@ -11,20 +10,9 @@ module.exports = {
       if (req.swagger.operation) {
         const error = req.swagger.operation.validateResponse(req, res, obj)
 
-        if (error) {
-          if (rc.env === 'test' || rc.env === 'development') {
-            debug('original response', obj)
-            throw new HttpError(names[500], 'InvalidResponse ' + JSON.stringify(error, null, '  '))
-          } else {
-            console.error({
-              label: 'invalid response format',
-              response: JSON.stringify(obj, null, '  '),
-              errors: JSON.stringify(error, null, '  '),
-              method: req.method,
-              url: req.url,
-              user: _.get(req, 'user.id')
-            })
-          }
+        if (error && rc.env !== 'production') {
+          debug('original response', obj)
+          throw new HttpError(names[500], 'InvalidResponse ' + JSON.stringify(error, null, '  '))
         }
       }
       return obj
