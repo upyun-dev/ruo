@@ -1,10 +1,13 @@
 const path = require('path')
+const util = require('util');
 
-const co = require('co')
 const _ = require('lodash')
 
 const rc = require('./rc')
 
+function isAsync(fn) {
+  return fn.constructor.name === 'AsyncFunction';
+}
 //
 // Async handling utilities
 //
@@ -13,10 +16,15 @@ exports.wrapRoute = (fn) => {
   if (fn && fn.__ruo_wrap) {
     return fn
   }
-  fn = co.wrap(fn)
+
+  if (!isAsync(fn)) {
+    fn = util.promisify(fn);
+  }
   const newFn = function () {
+    const next = arguments[arguments.length - 1]
+    console.log(fn.toString())
     return fn.apply(undefined, arguments)
-      .catch(arguments[arguments.length - 1])
+      .catch(next)
   }
   newFn.__ruo_wrap = true
   return newFn
@@ -26,11 +34,13 @@ exports.wrapMiddleware = (fn) => {
   if (fn && fn.__ruo_wrap) {
     return fn
   }
-  fn = co.wrap(fn)
+
+  if (!isAsync(fn)) {
+    fn = util.promisify(fn);
+  }
   const newFn = function () {
     const next = arguments[arguments.length - 1]
     return fn.apply(undefined, arguments)
-      .then(next.bind(null, null))
       .catch(next)
   }
   newFn.__ruo_wrap = true

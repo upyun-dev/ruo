@@ -17,7 +17,6 @@
   "author": "zhongchiyu@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "co": "^4.6.0",
     "connect-redis": "^5.0.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
