@@ -32,7 +32,15 @@ async function createApplicationAsync (app, config = {}) {
     }
     exports.app = app
 
-    const server = http.createServer(app)
+    let server;
+
+    if (config.finalhandler) {
+      server = http.createServer((req, res) => {
+        app(req, res, config.finalhandler)
+      })
+    } else {
+      server = http.createServer(app)
+    }
     const {api, middlewares} = await load(config.swagger, exports)
     exports.api = api
 
