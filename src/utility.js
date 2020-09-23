@@ -22,7 +22,6 @@ exports.wrapRoute = (fn) => {
   }
   const newFn = function () {
     const next = arguments[arguments.length - 1]
-    console.log(fn.toString())
     return fn.apply(undefined, arguments)
       .catch(next)
   }
