@@ -21,7 +21,7 @@
     "connect-redis": "^5.0.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
+    "express-session": "github:upyun-dev/session#v1.0.5",
     "glob": "^7.1.6",
     "ioredis": "^4.17.3",
     "js-yaml": "^3.14.0",
